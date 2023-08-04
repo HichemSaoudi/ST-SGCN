@@ -4,6 +4,8 @@ This repository contains the source code for our paper:
 
 **Paper Title**
 
+![hippo](images/approach.png)
+
 ## **Updates**
 - ...
 
@@ -23,7 +25,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-By default, the training datasets are structured as follows for each sequence:
+By default, the training datasets are structured as follows for each sequence (see example in `./datasets/`):
 
 ```
 ## frames 1
