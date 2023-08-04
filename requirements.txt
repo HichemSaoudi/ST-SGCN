@@ -1,0 +1,7 @@
+numpy=1.23.3
+opencv-python==4.6.0.66
+pandas==1.5.1
+pillow==9.5.0
+torchvision==0.2.2
+tqdm==4.65.0
+mediapipe==0.9.1.0
