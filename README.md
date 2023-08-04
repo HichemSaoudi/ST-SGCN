@@ -66,3 +66,6 @@ python train.py --params
 If you find this repo useful, please consider citing our paper
 
 ```ref```
+
+## Notes
+This code borrows from [SGCN](https://github.com/shuaishiliu/SGCN/tree/0ff25cedc04852803787196e83c0bb941d724fc2).
