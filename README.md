@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-By default, the training datasets are structured as follows for each sequence (see example in `./datasets/`):
+By default, the 3D hand joints training dataset is structured as follows for each sequence (see example in `./datasets/`):
 
 ```
 ## frames 1
