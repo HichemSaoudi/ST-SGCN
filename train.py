@@ -105,15 +105,10 @@ def validate_epoch(model, dataloader, criterion):
 args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 ## paths
-# args.data_dir = "/home/hichemsaoudi/Desktop/IPN/landmarks"
-# args.train_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TrainList.txt"
-# args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
-# args.test_annot_file  = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
-
-args.data_dir = '/home/these/DATA/Dataset/OMar/IPN/landmarks'
-args.train_annot_file = '/home/these/DATA/Dataset/OMar/IPN/annotations/Annot_TrainList_splitted.txt'
-args.valid_annot_file = '/home/these/DATA/Dataset/OMar/IPN/annotations/Annot_ValidList_splitted.txt'
-args.test_annot_file  = '/home/these/DATA/Dataset/OMar/IPN/annotations/Annot_TestList.txt'
+args.data_dir = "/home/hichemsaoudi/Desktop/IPN/landmarks"
+args.train_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TrainList.txt"
+args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
+args.test_annot_file  = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
 
 edge = set(solutions.hands.HAND_CONNECTIONS)
 connectivity = calculate_connectivity(hand_adj_matrix, edge)
