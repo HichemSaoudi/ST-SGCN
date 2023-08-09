@@ -6,8 +6,6 @@ import os
 def save_checkpoint(state, save_path, filename, is_best):
 
     torch.save(state, os.path.join(save_path, filename))
-    #if is_best:
-    #    shutil.copyfile(os.path.join(save_path, filename), os.path.join(save_path, 'model_best.pth'))
             
 
 def load_checkpoint(model, optimizer, scheduler, filename='checkpoint.pth.tar'):
