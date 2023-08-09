@@ -64,8 +64,8 @@ class BriareoDataset(Dataset):
             if landmarks is not None:
                 data.append((landmarks, label))
         return data
-    
 
+    
     def load_landmarks(self, txt_file):
         sequence_landmarks = []
         with open(txt_file) as f:
@@ -82,18 +82,16 @@ class BriareoDataset(Dataset):
                 else:
                     coords = line.split(';')
                     coords = list(filter(lambda x: len(x), coords))
-                    #coords = [self.num_connections[e]/3] + [float(x) for x in coords]
-                #spher_coords = self.cartesian_to_polar(coords)
+                    coords = [self.num_connections[e]/3] + [float(x) for x in coords]
                 landmarks.append(coords)
                 
             if len(landmarks) < 2:
                 continue
-                #landmarks = [[-1.0, -1.0, -1.0, -1.0]] * 21
                 
             landmarks = np.array(landmarks).astype(np.float32)
-            #speed, accel = self.compute_motion_features(landmarks)
-            #features = np.hstack((landmarks, speed, accel))
-            sequence_landmarks.append(landmarks)
+            speed, accel = self.compute_motion_features(landmarks)
+            features = np.hstack((landmarks, speed, accel))
+            sequence_landmarks.append(features)
             
         if len(sequence_landmarks) > 1:
             sequence_landmarks = np.array(sequence_landmarks).astype(np.float32)
@@ -125,8 +123,6 @@ class BriareoDataset(Dataset):
             norm_sequence = sequence[top_k(delta, max_length)][0]
             
         elif len(sequence) < max_length:
-            
-            #norm_sequence = self.upsample(sequence, max_length)
             norm_sequence = interpolate_landmarks(sequence, max_length)
         else:
             norm_sequence = sequence
