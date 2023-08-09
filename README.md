@@ -12,8 +12,8 @@ This repository contains the source code for our paper:
 ## **Installation**
 Create and activate conda environment:
 ```
-conda create -n GCN_env python=3.10
-conda activate GCN_env
+conda create -n DGCN_env python=3.10
+conda activate DGCN_env
 ```
 
 Install all dependencies:
