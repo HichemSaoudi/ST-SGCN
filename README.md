@@ -2,9 +2,9 @@
 
 This repository contains the source code for our paper:
 
-**Paper Title**
+**DGCN**
 
-![hippo](images/approach.png)
+![hippo](images/OverallArchitecture.png.png)
 
 ## **Updates**
 - ...
