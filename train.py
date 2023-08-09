@@ -156,7 +156,7 @@ print(f"#Train: {len(train_dataloader)} | #Valid: {len(valid_dataloader)} | #Tes
 
 
 ## training params
-args.num_epochs = 150
+args.num_epochs = 200
 args.pre_trained = None
 
 ## model parameters
