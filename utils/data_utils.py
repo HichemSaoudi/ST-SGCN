@@ -46,6 +46,93 @@ def top_k(array, k):
     indices = indices[np.argsort(-flat[indices])]
     return np.sort(np.unravel_index(indices, array.shape))
 
+def random_moving(self, data_numpy,
+                          angle_candidate=[-10., -5., 0., 5., 10.],
+                          scale_candidate=[0.9, 1.0, 1.1],
+                          transform_candidate=[-0.2, -0.1, 0.0, 0.1, 0.2],
+                          move_time_candidate=[1]):
+        
+        # input: T,V,C
+        data_numpy = np.transpose(data_numpy, (2, 0, 1))
+        new_data_numpy = np.zeros(data_numpy.shape)
+        C, T, V = data_numpy.shape
+        move_time = random.choice(move_time_candidate)
+
+        node = np.arange(0, T, T * 1.0 / move_time).round().astype(int)
+        node = np.append(node, T)
+        num_node = len(node)
+
+        A = np.random.choice(angle_candidate, num_node)
+        S = np.random.choice(scale_candidate, num_node)
+        T_x = np.random.choice(transform_candidate, num_node)
+        T_y = np.random.choice(transform_candidate, num_node)
+
+        a = np.zeros(T)
+        s = np.zeros(T)
+        t_x = np.zeros(T)
+        t_y = np.zeros(T)
+
+        # linspace
+        for i in range(num_node - 1):
+            a[node[i]:node[i + 1]] = np.linspace(
+                A[i], A[i + 1], node[i + 1] - node[i]) * np.pi / 180
+            s[node[i]:node[i + 1]] = np.linspace(S[i], S[i + 1],
+                                                    node[i + 1] - node[i])
+            t_x[node[i]:node[i + 1]] = np.linspace(T_x[i], T_x[i + 1],
+                                                       node[i + 1] - node[i])
+            t_y[node[i]:node[i + 1]] = np.linspace(T_y[i], T_y[i + 1],
+                                                       node[i + 1] - node[i])
+
+        theta = np.array([[np.cos(a) * s, -np.sin(a) * s],
+                              [np.sin(a) * s, np.cos(a) * s]])
+
+        # perform transformation
+        for i_frame in range(T):
+            xy = data_numpy[0:2, i_frame, :]
+            new_xy = np.dot(theta[:, :, i_frame], xy.reshape(2, -1))
+
+            new_xy[0] += t_x[i_frame]
+            new_xy[1] += t_y[i_frame]
+
+            new_data_numpy[0:2, i_frame, :] = new_xy.reshape(2, V)
+
+        new_data_numpy[2, :, :] = data_numpy[2, :, :]
+
+        return np.transpose(new_data_numpy, (1, 2, 0))
+
+def noise(self ,skeleton):
+        
+        low = -0.1
+        high = -low
+        # select 4 joints
+        all_joint = list(range(21))
+        random.shuffle(all_joint)
+        selected_joint = all_joint[0:4]
+        for j_id in selected_joint:
+            noise_offset = np.random.uniform(low, high, 4)
+            for t in range(skeleton.shape[0]):
+                skeleton[t][j_id] += noise_offset
+        skeleton = np.array(skeleton)
+        return skeleton
+
+def scaleInvariance(self, skeleton):
+
+            x_c = np.copy(skeleton)
+
+            distance = np.sqrt(np.sum((x_c[0, 1] - x_c[0, 0])**2, axis=-1))
+
+            factor = 1/distance
+
+            x_c *= factor
+
+            return x_c
+
+def translationInvariance(self, skeleton):
+            # normalize by palm center value at frame=1
+            skeleton_copy = np.copy(skeleton[0][1])
+            skeleton -= skeleton_copy
+            #skeleton = skeleton.float()
+            return skeleton
 
 def interpolate_landmarks(landmarks, L):
     l, n_landmarks, _ = landmarks.shape
@@ -64,7 +151,7 @@ def interpolate_landmarks(landmarks, L):
     output_indices = np.floor(output_indices).astype(int)
 
     # Initialize the output array
-    interpolated_landmarks = np.zeros((L, n_landmarks, 4), dtype=float)
+    interpolated_landmarks = np.zeros((L, n_landmarks, 6), dtype=float)
 
     # Compute the interpolated landmarks
     for i in range(L):
