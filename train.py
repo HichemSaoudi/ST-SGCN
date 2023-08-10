@@ -23,8 +23,10 @@ from tqdm import tqdm
 import glob
 
 from utils.checkpoints import load_checkpoint, save_checkpoint
-from utils.graph_utils import calculate_connectivity, get_sgcn_identity, hand_adj_matrix
+from utils.graph_utils import calculate_connectivity, get_sgcn_identity, hand_adj_matrix, edge
 from datasets.ipn_dataset import IPNDataset
+from datasets.briareo_dataset import BriareoDataset
+from datasets.shrec17_dataset import ShrecDataset
 from models.sgcn import SGCNModel
 
 
@@ -51,6 +53,8 @@ class Args:
 args = Args()
 args.seed = 1234
 seed_everything(args.seed)
+
+args.datasetname = 'IPN' #Briareo,SHREC17,SHREC21,IPN
 
 
 def train_epoch(epoch, num_epochs, model, optimizer, dataloader, criterion):
@@ -110,7 +114,7 @@ args.train_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TrainL
 args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_ValidList.txt"
 args.test_annot_file  = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
 
-edge = set(solutions.hands.HAND_CONNECTIONS)
+#edge = set(solutions.hands.HAND_CONNECTIONS)
 connectivity = calculate_connectivity(hand_adj_matrix, edge)
 
 ## params
