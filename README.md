@@ -57,6 +57,9 @@ x21, y21, z21
 
 ## Training
 
+1. Download the [SHREC’17 Track Dataset](http://www-rech.telecom-lille.fr/shrec2017-hand/) , the [Briareo Dataset](https://drive.google.com/file/d/1IgxNfO_RprNjI0weYfser1OjzymZZQ78/view) , the [SHREC'21 Dataset](https://univr-vips.github.io/Shrec21) and the Extracted landmarks [IPN Dataset](https://drive.google.com/file/d/19cGm7vSKoVdlCzEOqcUkDiyMgFJdKgmG/view?usp=drive_link)
+2. Set the path to you dataset in `train.py (line 107)`
+3. Run the following command to train the model
 ```
 python train.py --params
 ```
