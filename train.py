@@ -54,7 +54,7 @@ args = Args()
 args.seed = 1234
 seed_everything(args.seed)
 
-args.datasetname = 'IPN' #Briareo,SHREC17,SHREC21,IPN
+args.datasetname = 'Briareo' #Briareo,SHREC17,SHREC21,IPN
 
 
 def train_epoch(epoch, num_epochs, model, optimizer, dataloader, criterion):
@@ -109,22 +109,22 @@ def validate_epoch(model, dataloader, criterion):
 args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 ## paths
-args.data_dir = "/home/hichemsaoudi/Desktop/IPN/landmarks"
-args.train_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TrainList.txt"
-args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_ValidList.txt"
-args.test_annot_file  = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
+args.data_dir = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/landmarks"
+args.train_annot_file = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/splits/train/depth_train.npz"
+args.valid_annot_file = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/splits/train/depth_val.npz"
+args.test_annot_file  = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/splits/test/depth_test.npz"
 
 #edge = set(solutions.hands.HAND_CONNECTIONS)
 connectivity = calculate_connectivity(hand_adj_matrix, edge)
 
 ## params
 args.num_nodes = 21
-args.max_seq_len = 80
+args.max_seq_len = 60
 args.labels_encoder = None
 
 
 
-train_dataset = IPNDataset(
+train_dataset = BriareoDataset(
                            args.data_dir,
                            args.train_annot_file,
                            args.max_seq_len,
@@ -132,14 +132,14 @@ train_dataset = IPNDataset(
                           )
 
 
-valid_dataset = IPNDataset(
+valid_dataset = BriareoDataset(
                            args.data_dir,
                            args.valid_annot_file,
                            args.max_seq_len,
                            connectivity,
                           )
 
-test_dataset = IPNDataset(
+test_dataset = BriareoDataset(
                           args.data_dir,
                           args.test_annot_file,
                           args.max_seq_len,
@@ -164,8 +164,8 @@ args.num_epochs = 200
 args.pre_trained = None
 
 ## model parameters
-args.num_features = 4
-args.num_asymmetric_convs = 6
+args.num_features = 6
+args.num_asymmetric_convs = 3
 args.embedding_dims = 64
 args.num_gcn_layers = 1
 args.num_heads = 4
