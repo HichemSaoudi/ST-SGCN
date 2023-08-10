@@ -107,7 +107,7 @@ args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 ## paths
 args.data_dir = "/home/hichemsaoudi/Desktop/IPN/landmarks"
 args.train_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TrainList.txt"
-args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
+args.valid_annot_file = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_ValidList.txt"
 args.test_annot_file  = "/home/hichemsaoudi/Desktop/IPN/annotations/Annot_TestList.txt"
 
 edge = set(solutions.hands.HAND_CONNECTIONS)
