@@ -63,8 +63,7 @@ x21, y21, z21
 ```
 python train.py --params
 ```
-1. Download the best pre-trained model : [Briareo]([http://www-rech.telecom-lille.fr/shrec2017-hand/](https://drive.google.com/file/d/14WUYFKN3A9QHUanDM3oEq61BjggHt-VC/view?usp=drive_link)) 
-
+1. Download the best pre-trained model : [Briareo](https://drive.google.com/file/d/14WUYFKN3A9QHUanDM3oEq61BjggHt-VC/view)
 ## Citation
 If you find this repo useful, please consider citing our paper
 
