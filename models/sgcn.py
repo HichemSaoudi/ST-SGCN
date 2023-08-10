@@ -179,13 +179,13 @@ class SpatialTemporalFusion(nn.Module):
 
 class SparseWeightedAdjacency(nn.Module):
 
-    def __init__(self, spa_in_dims, tem_in_dims, embedding_dims, n_heads, n_frames, dropout, n_asymmetric_convs, device):
+    def __init__(self, spa_in_dims, tem_in_dims, embedding_dims, n_heads, n_frames, dropout, n_asymmetric_convs, n_nodes, device):
         super(SparseWeightedAdjacency, self).__init__()
 
         # positional encoder
         #self.positional_encoder = PositionalEncoder(embedding_dims)
-        self.pes = PositionalEncoding (channel = 4, joint_num = 21, time_len = 80, domain = "spatial")
-        self.pet = PositionalEncoding (channel = 4, joint_num = 21, time_len = 80, domain = "temporal")
+        self.pes = PositionalEncoding (channel = spa_in_dims, joint_num = n_nodes, time_len = n_frames, domain = "spatial")
+        self.pet = PositionalEncoding (channel = tem_in_dims, joint_num = n_nodes, time_len = n_frames, domain = "temporal")
 
         ##Regulation
         #self.attention0s = nn.Parameter(torch.ones(1, n_heads, 22, 22) + torch.eye(22),
@@ -204,6 +204,7 @@ class SparseWeightedAdjacency(nn.Module):
 
         self.dropout = dropout
         self.zero_softmax = ZeroSoftmax()
+        self.n_nodes = n_nodes
 
     def forward(self, graph, identity):
 
@@ -222,7 +223,7 @@ class SparseWeightedAdjacency(nn.Module):
         
         dense_temporal_interaction, temporal_embeddings = self.temporal_attention(temporal_graph_emb, multi_head=True)
         
-        #dense_spatial_interaction = dense_spatial_interaction + self.attention0s.repeat(60, 1, 1, 1)
+        #dense_spatial_interaction = dense_spatial_interaction + self.attention0s.repeat(self.n_nodes, 1, 1, 1)
 
         # attention fusion
         st_interaction = self.spa_fusion(dense_spatial_interaction.permute(1, 0, 2, 3)).permute(1, 0, 2, 3)
@@ -357,6 +358,7 @@ class SGCNModel(nn.Module):
                                                                           n_frames=args.max_seq_len,
                                                                           dropout=args.dropout,
                                                                           n_asymmetric_convs=args.num_asymmetric_convs,
+                                                                          n_nodes=args.num_nodes,
                                                                           device=args.device)
 
         ## graph convolution
