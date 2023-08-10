@@ -99,7 +99,6 @@ class IPNDataset(Dataset):
                 i += 1
                 
             #if len(landmarks) < 2:
-             #   continue
                 #landmarks = [[-1.0, -1.0, -1.0, -1.0]] * 21
                 
             landmarks = np.array(landmarks).astype(np.float32)
