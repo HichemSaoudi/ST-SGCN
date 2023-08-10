@@ -212,12 +212,9 @@ class SparseWeightedAdjacency(nn.Module):
 
         spatial_graph = graph[:, :, :]
 
+        temporal_graph_emb = spatial_graph.permute(1, 0, 2)
+
         spatial_graph_emb = self.pet(spatial_graph)
-
-        temporal_graph = self.pet(spatial_graph)
-
-        temporal_graph_emb = temporal_graph.permute(1, 0, 2)
-
 
         dense_spatial_interaction, spatial_embeddings = self.spatial_attention(spatial_graph_emb, multi_head=True)
         
