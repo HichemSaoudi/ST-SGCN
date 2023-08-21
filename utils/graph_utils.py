@@ -102,6 +102,10 @@ def create_adj_matrix(dataset):
         
         return A, edge
 
+    else:
+        raise NotImplementedError("The adjacency matrix is implemented for datasets {'Briareo', 'IPN', 'SHREC17', 'SHREC21'}! for another dataset, you need to implement the corresponding adjacency matrix".)
+        
+
 
 def get_sgcn_identity(shape, device):
     identity_spatial = torch.from_numpy(np.array([hand_adj_matrix] * shape[1])).type(torch.float32).to(device)
