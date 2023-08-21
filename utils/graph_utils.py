@@ -3,8 +3,8 @@ import torch
 from mediapipe import solutions
 
 
-if args.datasetname = 'Briareo' or args.datasetname = 'IPN' :
-    def adj_matrix():
+def create_adj_matrix(dataset):
+    if dataset == 'Briareo' or dataset == 'IPN':
         n_lands = len(solutions.hands.HAND_CONNECTIONS)
         A = np.zeros((n_lands, n_lands))
         for i, j in solutions.hands.HAND_CONNECTIONS:
@@ -13,10 +13,9 @@ if args.datasetname = 'Briareo' or args.datasetname = 'IPN' :
         A += np.eye(A.shape[0])
         edge = set(solutions.hands.HAND_CONNECTIONS)
         
-        return A,edge
+        return A, edge
 
-if args.datasetname = 'SHREC17' : 
-    def adj_matrix():
+    elif dataset == 'SHREC17': 
         num_node = 22
         A = np.zeros((num_node, num_node))
         link = [(i, i) for i in range(num_node)]
@@ -68,11 +67,10 @@ if args.datasetname = 'SHREC17' :
         
         A += np.eye(A.shape[0])
         
-        return A,edge
+        return A, edge
 
 
-if args.datasetname = 'SHREC21' :
-    def adj_matrix():
+    elif dataset == 'SHREC21':
         num_node = 20
         A = np.zeros((num_node, num_node))
         link = [(i, i) for i in range(num_node)]
@@ -102,10 +100,7 @@ if args.datasetname = 'SHREC21' :
         
         A += np.eye(A.shape[0])
         
-        return A,edge
-
-
-hand_adj_matrix, edge = adj_matrix()
+        return A, edge
 
 
 def get_sgcn_identity(shape, device):
