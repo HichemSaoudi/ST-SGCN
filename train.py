@@ -23,7 +23,7 @@ from tqdm import tqdm
 import glob
 
 from utils.checkpoints import load_checkpoint, save_checkpoint
-from utils.graph_utils import calculate_connectivity, get_sgcn_identity, hand_adj_matrix, edge
+from utils.graph_utils import calculate_connectivity, get_sgcn_identity, create_adj_matrix
 from datasets.ipn_dataset import IPNDataset
 from datasets.briareo_dataset import BriareoDataset
 from datasets.shrec17_dataset import ShrecDataset
@@ -115,6 +115,7 @@ args.valid_annot_file = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/s
 args.test_annot_file  = "/home/hichemsaoudi/Downloads/Briareo_landmarks_splits/splits/test/depth_test.npz"
 
 #edge = set(solutions.hands.HAND_CONNECTIONS)
+hand_adj_matrix, edge = create_adj_matrix(args.datasetname)
 connectivity = calculate_connectivity(hand_adj_matrix, edge)
 
 ## params
