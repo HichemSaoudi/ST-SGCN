@@ -1,6 +1,6 @@
-# **HGR / GCN**
+# **STSGCN**
 
-This repository contains the source code for our paper:
+This repository contains the source code for our paper: Spatio Temporal Sparse Graph Convolution Network for Hand Gesture Recognition
 
 **DGCN**
 
