@@ -4,7 +4,7 @@ This repository contains the source code for our paper:
 
 **DGCN**
 
-![hippo](images/Archi.png)
+![hippo](images/SSTGCN approach.png)
 
 ## **Updates**
 - ...
