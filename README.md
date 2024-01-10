@@ -4,7 +4,7 @@ This repository contains the source code for our paper: Spatio-Temporal Sparse G
 
 **DGCN**
 
-![hippo](images/SSTGCN_approach.jpg)
+![hippo](images/ST-GCN.jpg)
 
 ## **Updates**
 - ...
