@@ -3,7 +3,9 @@
 This repository contains the source code for our paper: Spatio-Temporal Sparse Graph Convolution Network for Hand Gesture Recognition
 
 **Our approach**
+
 The main steps include:
+  
 1. Decoupled learning of **directed** and **sparse** spatial and temporal interactions, using attention mechanism and asymmetric convolutions. 
 
 2. Acquiring **cross-spatial-temporal** graph representations, by capturing both spatial-temporal and temporal-spatial interactions.
