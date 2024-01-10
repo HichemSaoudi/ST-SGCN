@@ -27,8 +27,6 @@ Install all dependencies:
 pip install -r requirements.txt
 ```
 
-### Demos
-
 ## Dataset
 
 By default, the 3D hand joints training dataset is structured as follows for each sequence (see example in `./datasets/`):
