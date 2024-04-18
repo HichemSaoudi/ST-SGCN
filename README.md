@@ -67,7 +67,7 @@ x21, y21, z21
 ```
 python train.py --params
 ```
-1. Download the best pre-trained model : [Briareo](https://drive.google.com/file/d/14WUYFKN3A9QHUanDM3oEq61BjggHt-VC/view) , [SHREC17](https://drive.google.com/file/d/1ZXBj_uSKkfS59mq-Kee04ecnIvZwkKva/view?usp=drive_link) , [SHREC21](https://drive.google.com/file/d/1Ld4aK5knU8XjRyO_EpOipCxzYpHLZMew/view?usp=drive_link) and [IPN](https://drive.google.com/file/d/14uDiEpaZ_I10WOva8jO3WzsnhuPLqBFZ/view?usp=drive_link)
+1. Download pre-trained models : [Briareo](https://drive.google.com/file/d/14WUYFKN3A9QHUanDM3oEq61BjggHt-VC/view) , [SHREC17](https://drive.google.com/file/d/1ZXBj_uSKkfS59mq-Kee04ecnIvZwkKva/view?usp=drive_link) , [SHREC21](https://drive.google.com/file/d/1Ld4aK5knU8XjRyO_EpOipCxzYpHLZMew/view?usp=drive_link) and [IPN](https://drive.google.com/file/d/14uDiEpaZ_I10WOva8jO3WzsnhuPLqBFZ/view?usp=drive_link)
 ## Citation
 If you find this repo useful, please consider citing our paper
 
