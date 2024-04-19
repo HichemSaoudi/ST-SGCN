@@ -18,8 +18,8 @@ The main steps include:
 ## **Installation**
 Create and activate conda environment:
 ```
-conda create -n DGCN_env python=3.10
-conda activate DGCN_env
+conda create -n stsgcn_env python=3.10
+conda activate stsgcn_env
 ```
 
 Install all dependencies:
