@@ -71,7 +71,7 @@ python train.py --params
 ## Citation
 If you find this repo useful, please consider citing our paper
 
-```ref```
+```Omar Ikne, Rim Slama, Hichem Saoudi, Hazem Wannous. Spatio-Temporal Sparse Graph Convolution Network for Hand Gesture Recognition. The 18th IEEE International Conference on Automatic Face and Gesture Recognition, May 2024, Istanbul, Turkey. ⟨hal-04574611v1⟩```
 
 ## Notes
 This code borrows from [SGCN](https://github.com/shuaishiliu/SGCN/tree/0ff25cedc04852803787196e83c0bb941d724fc2).
